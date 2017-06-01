@@ -1,0 +1,26 @@
+{
+	"id":"1224940020021",
+	"owner name":["ZHAO WENYU", "WANG YANG"],
+	"mailing address":"3019 HERITAGE CREEK TER HOUSTON TX 77008-6149",
+	"property address":"3019 HERITAGE CREEK TER HOUSTON TX 77008-6149",
+	"valuations":{
+		"appraised":{
+			"2016":349889,
+			"2015":318081
+		},
+		"market":{
+			"2016":{
+				"land":101640,
+				"improvement":273558,
+				"total":375198
+			},
+			"2015":{
+				"land":88935,
+				"improvement":249462,
+				"total":338397
+			}
+		}
+	},
+	"land area":2541,
+	"total living area":2632
+}
