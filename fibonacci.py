@@ -1,4 +1,5 @@
 
+#return the first N values of the Fibonacci number
 def fibo(length, init_num=1):
     vector = [init_num]
     if length == 1:
@@ -8,7 +9,97 @@ def fibo(length, init_num=1):
     else:
         vector.append(1)
         i = 3
-        while (i>2) & (i<length+1):
+        while i<length+1:
             vector.append(vector[-1]+vector[-2])
             i += 1
     return vector
+
+
+#return the minimum number of steps to reach end of array
+def minSteps(l):
+    n = len(l)
+    jumps = [0]*n
+    if n==1:
+        return 0
+        
+    if l[0] == 0:
+        return 1e99
+    
+    i = 1
+    while i < n:
+        jumps[i] = 1e99
+        j = 0
+        while j < i:
+            if (j+l[j]>=i) & (jumps[j]!= 1e99):
+                jumps[i] = min(jumps[i], jumps[j]+1)
+            j+=1
+        i+=1
+    return jumps[n-1]
+    
+    
+#move from left to right, by the value at the index but only to right; 
+#return if there is a solution
+def stones(l):
+    n = len(l)
+    flags = [0]*n; flags[0]=1
+    if n==1:
+        return True
+    
+    if l[0]==0:
+        return False
+        
+    i = 1
+    while i<n:
+        j = 0
+        while j<i:
+            if (j+l[j]==i) & (flags[j]==1):
+                flags[i] = 1
+            j+=1
+        i+=1
+    return bool(flags[-1]), flags
+    
+#move from left to right, by the value at the index to both left & right;
+#return if there is a solution
+import copy
+def stones2(l):
+    n = len(l)
+    flags = [0]*n; flags[0]=1
+    if n==1:
+        return True
+    
+    if l[0]==0:
+        return False
+    
+    def scan_right(l, flags):
+        flags_return = copy.deepcopy(flags)
+        i = 1
+        while i<n:
+            j = 0
+            while j<i:
+                if (j+l[j]==i) & (flags[j]==1):
+                    flags_return[i] = 1
+                j+=1
+            i+=1
+        return flags_return
+    
+    def scan_left(l, flags):
+        flags_return = copy.deepcopy(flags)
+        i = 1
+        while i<n:
+            j = n-1
+            while j>i:
+                if (j-l[j]==i) & (flags[j]==1):
+                    flags_return[i] = 1
+                j-=1
+            i+=1
+        return flags_return
+    
+    flags_right = scan_right(l, flags)
+    while (flags_right != flags) & (flags_right[n-1]==0):
+        flags = scan_left(l, flags_right)
+        flags_right = scan_right(l, flags)
+        
+    return bool(flags_right[-1]), flags_right
+    
+
+    
