@@ -42,6 +42,7 @@ def minSteps(l):
 def stones(l):
     n = len(l)
     flags = [0]*n; flags[0]=1
+    indexes = []
     if n==1:
         return True
     
@@ -54,9 +55,10 @@ def stones(l):
         while j<i:
             if (j+l[j]==i) & (flags[j]==1):
                 flags[i] = 1
+                indexes.append(j)
             j+=1
         i+=1
-    return bool(flags[-1]), flags
+    return bool(flags[-1]), flags, indexes
     
 #move from left to right, by the value at the index to both left & right;
 #return if there is a solution
@@ -64,13 +66,14 @@ import copy
 def stones2(l):
     n = len(l)
     flags = [0]*n; flags[0]=1
+    indexes = [0]
     if n==1:
         return True
     
     if l[0]==0:
         return False
     
-    def scan_right(l, flags):
+    def scan_right(l, flags, indexes):
         flags_return = copy.deepcopy(flags)
         i = 1
         while i<n:
@@ -78,11 +81,13 @@ def stones2(l):
             while j<i:
                 if (j+l[j]==i) & (flags[j]==1):
                     flags_return[i] = 1
+                    if j not in indexes:
+                        indexes.append(j)
                 j+=1
             i+=1
-        return flags_return
+        return flags_return, indexes
     
-    def scan_left(l, flags):
+    def scan_left(l, flags, indexes):
         flags_return = copy.deepcopy(flags)
         i = 1
         while i<n:
@@ -90,16 +95,18 @@ def stones2(l):
             while j>i:
                 if (j-l[j]==i) & (flags[j]==1):
                     flags_return[i] = 1
+                    if j not in indexes:
+                        indexes.append(j)
                 j-=1
             i+=1
-        return flags_return
+        return flags_return, indexes
     
-    flags_right = scan_right(l, flags)
+    flags_right, indexes = scan_right(l, flags, indexes)
     while (flags_right != flags) & (flags_right[n-1]==0):
-        flags = scan_left(l, flags_right)
-        flags_right = scan_right(l, flags)
+        flags, indexes = scan_left(l, flags_right, indexes)
+        flags_right, indexes = scan_right(l, flags, indexes)
         
-    return bool(flags_right[-1]), flags_right
+    return bool(flags_right[-1]), flags_right, indexes
     
 
     
