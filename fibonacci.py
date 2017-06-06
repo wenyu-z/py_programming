@@ -109,4 +109,30 @@ def stones2(l):
     return bool(flags_right[-1]), flags_right, indexes
     
 
+#return if there exist three integers that have a summation of a number
+def sumThree(l, sumnum):
+    n = len(l)
     
+    i = 0
+    while i<n:
+        resi_i = sumnum - l[i]
+        j=i+1
+        while j<n:
+            resi_j = resi_i - l[j]
+            k = j+1
+            while k<n:
+                if l[k]==resi_j:
+                    return True, i,j,k
+                k+=1
+            j+=1
+        i+=1
+    
+    return False
+
+
+#return if there exist a number of integers that have a summation of a number
+def sumAny(l, sumnum, picknum):
+    n = len(l)
+    
+
+
