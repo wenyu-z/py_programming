@@ -13,3 +13,13 @@ Eventually I used [this link](https://cloud.google.com/compute/docs/instances/co
    2. In Connection-Tunnels, use Source port `8900` and Destination `localhost:8888`
 4. Run `jupyter notebook` in the PuTTY window
 5. Connect via http://localhost:8900/tree?token=token (whatever the token is) in a browser
+
+## Create cluster with additional parameters
+The minimum set of parameters is provided in [the first link](https://cloud.google.com/dataproc/docs/tutorials/jupyter-notebook) from the previous section. Eventually these are used in addition:
+```
+gcloud dataproc clusters create cluster-2  \
+--project slb-it-ads-tlm-dev --bucket cluster-2 --num-workers 4  \
+--initialization-actions gs://dataproc-initialization-actions/jupyter/jupyter.sh \
+--metadata "JUPYTER_CONDA_PACKAGES=numpy:pandas:scikit-learn:matplotlib" --metadata "MINICONDA_VARIANT=2"
+```
+Defined above: number of workers, preinstalled packages, Miniconda version (which decides Python version)
