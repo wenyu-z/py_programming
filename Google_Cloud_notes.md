@@ -23,3 +23,7 @@ gcloud dataproc clusters create cluster-2  \
 --metadata "JUPYTER_CONDA_PACKAGES=numpy:pandas:scikit-learn:matplotlib" --metadata "MINICONDA_VARIANT=2"
 ```
 Defined above: number of workers, preinstalled packages, Miniconda version (which decides Python version)
+
+#### References:
+1. https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/tree/master/jupyter
+2. https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/issues/105
