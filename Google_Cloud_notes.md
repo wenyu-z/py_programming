@@ -26,4 +26,4 @@ Defined above: number of workers, preinstalled packages, Miniconda version (whic
 
 #### References:
 1. https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/tree/master/jupyter
-2. https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/issues/105
+2. https://github.com/GoogleCloudPlatform/dataproc-initialization-actions/issues/105​
