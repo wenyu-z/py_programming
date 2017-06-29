@@ -1,5 +1,5 @@
 
-#return the first N values of the Fibonacci number
+#%% return the first N values of the Fibonacci number
 def fibo(length, init_num=1):
     vector = [init_num]
     if length == 1:
@@ -15,7 +15,7 @@ def fibo(length, init_num=1):
     return vector
 
 
-#return the minimum number of steps to reach end of array
+#%% return the minimum number of steps to reach end of array
 def minSteps(l):
     n = len(l)
     jumps = [0]*n
@@ -37,6 +37,7 @@ def minSteps(l):
     return jumps[n-1]
     
     
+#%% skipping stones
 #move from left to right, by the value at the index but only to right; 
 #return if there is a solution
 def stones(l):
@@ -60,8 +61,10 @@ def stones(l):
         i+=1
     return bool(flags[-1]), flags, indexes
     
+#%% skipping stones
 #move from left to right, by the value at the index to both left & right;
 #return if there is a solution
+
 import copy
 def stones2(l):
     n = len(l)
@@ -108,8 +111,24 @@ def stones2(l):
         
     return bool(flags_right[-1]), flags_right, indexes
     
+#%% return path of a directed graph structure
 
-#return if there exist three integers that have a summation of a number
+def find_path(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if not graph.has_key(start):
+        return None
+        
+    for node in graph[start]:
+        if node not in path:
+            newpath = find_path(graph, node, end, path)
+            if newpath: return newpath
+            
+    return None
+
+
+#%% return if there exist three integers that have a summation of a number
 def sumThree(l, sumnum):
     n = len(l)
     
@@ -130,7 +149,7 @@ def sumThree(l, sumnum):
     return False
 
 
-#return if there exist a number of integers that have a summation of a number
+#%% return if there exist a number of integers that have a summation of a number
 def sumAny(l, sumnum, picknum):
     n = len(l)
     
