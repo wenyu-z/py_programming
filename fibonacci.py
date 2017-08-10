@@ -25,8 +25,34 @@ def fiboN(N):
             m[N] = fib(m, N-1) + fib(m, N-2)
         return m
 
-print fiboN(5)
-print fiboN(10)
+#%% return the first N values of the Fibonacci sequence
+def fibo(n):
+    if n == 0:
+        return [0]
+    if n == 1:
+        return [0, 1]
+    
+    return fibo(n-1) + [fibo(n-1)[-1]+fibo(n-1)[-2]]
+
+print fibo(8)
+
+#%% return the Nth value of the Fibonacci sequence
+def fibo(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    
+    return fibo(n-1)+fibo(n-2)
+
+print fibo(0)
+print fibo(1)
+print fibo(2)
+print fibo(3)
+print fibo(4)
+print fibo(5)
+print fibo(6)
+print fibo(7)
 
 #%% return the minimum number of steps to reach end of array
 def minSteps(l):
