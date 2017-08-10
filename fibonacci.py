@@ -14,6 +14,19 @@ def fibo(length, init_num=1):
             i += 1
     return vector
 
+#%% return the Nth value in Fibonacci number
+
+def fiboN(N):
+    m = dict()
+    m[0]=1; m[1]=1
+    
+    def fib(m, N):
+        if N not in m.keys():
+            m[N] = fib(m, N-1) + fib(m, N-2)
+        return m
+
+print fiboN(5)
+print fiboN(10)
 
 #%% return the minimum number of steps to reach end of array
 def minSteps(l):
